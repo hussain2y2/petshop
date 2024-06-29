@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             'first_name' => 'Admin',
             'last_name' => 'User',
             'email' => 'admin@buckhill.co.uk',
-            'password' => Hash::make('admin'),
+            'password' => Hash::make('password'),
             'is_admin' => true,
             'address' => fake()->address(),
             'phone_number' => fake()->phoneNumber(),

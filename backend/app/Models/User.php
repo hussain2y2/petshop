@@ -3,10 +3,25 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * Class User
+ *
+ * @property string $uuid
+ * @property string $first_name
+ * @property string $last_name
+ * @property string $email
+ * @property boolean $is_admin
+ * @property string $address
+ * @property string $phone_number
+ * @property boolean $is_marketing
+ * @property Carbon $last_login_at
+ * @mixin User
+ */
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -50,6 +65,9 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_admin' => 'boolean',
+            'is_marketing' => 'boolean',
+            'last_login_at' => 'datetime'
         ];
     }
 }
