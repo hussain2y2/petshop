@@ -14,11 +14,41 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
+/**
+ * @OA\Info(
+ *     title="API Documentation",
+ *     version="1.0.0"
+ * )
+ */
 class AuthController extends Controller
 {
     /**
-     * @param LoginRequest $request
-     * @return JsonResponse
+     * @OA\Post(
+     *     path="/api/v1/user/login",
+     *     tags={"Auth"},
+     *     summary="Login",
+     *     description="Authenticate user",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="email", type="string", example="user@example.com"),
+     *             @OA\Property(property="password", type="string", example="password")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="token", type="string", example="JWT token")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Invalid credentials"
+     *     )
+     * )
      */
     public function login(LoginRequest $request): JsonResponse
     {
@@ -34,7 +64,16 @@ class AuthController extends Controller
     }
 
     /**
-     * @return JsonResponse
+     * @OA\Post(
+     *     path="/api/v1/user/logout",
+     *     tags={"Auth"},
+     *     summary="Logout",
+     *     description="Logout the authenticated user",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation"
+     *     )
+     * )
      */
     public function logout(): JsonResponse
     {

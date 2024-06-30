@@ -1,0 +1,700 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Documentation",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1": {},
+        "/api/v1/user": {},
+        "/api/v1/user/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login",
+                "description": "Authenticate user",
+                "operationId": "fa14a7fd1f8095d2598c5f6a530327b6",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "user@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token": {
+                                            "type": "string",
+                                            "example": "JWT token"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials"
+                    }
+                }
+            }
+        },
+        "/api/v1/user/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Logout",
+                "description": "Logout the authenticated user",
+                "operationId": "0eeae717bf70f0e5d23609dd16c495f4",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/categories": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Get list of categories",
+                "description": "Returns a list of categories",
+                "operationId": "ead5fb1cf2a7453acb2e37928a1b1eaf",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Category"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/catefgory/create": {
+            "post": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Create a new category",
+                "description": "Creates a new category",
+                "operationId": "b4ff845bb2c0a69eaadaa875836c410a",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Category"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Category"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/category/{uuid}": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Get category by UUID",
+                "description": "Returns a single category",
+                "operationId": "cbe7f00a026e604b113dd50fb647d175",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Category"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Update an existing category",
+                "description": "Updates an existing category",
+                "operationId": "50afecc7de86fa0b536f1b9bdd61eb72",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Category"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Category"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Delete a category",
+                "description": "Deletes a category",
+                "operationId": "d5c963822a4d2955f16a3b20560bfeb2",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/orders": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Get list of orders",
+                "description": "Returns a list of orders",
+                "operationId": "325fd3d55bbe9bb39645269928fa4983",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Order"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get Auth Usser",
+                "description": "Returns a single user",
+                "operationId": "ed745944a1b54d824b40026b37de56e9",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Delete a user",
+                "description": "Deletes a user",
+                "operationId": "3c5069ba9898c26970fef21f70f0c2b2",
+                "responses": {
+                    "204": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/edit": {
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update an existing user",
+                "description": "Updates an existing user",
+                "operationId": "4d936c95ceb83d20b8cc01b664a6ae17",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Brand": {
+                "title": "Brand",
+                "description": "Brand model",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "uuid": {
+                        "type": "string",
+                        "example": "95a22f4d-a9cd-3d97-bb95-37655f0f13f5"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Brand Name"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "example": "brand-name"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "Category": {
+                "title": "Category",
+                "description": "Category model",
+                "properties": {
+                    "id": {
+                        "description": "Class Category",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "uuid": {
+                        "type": "string",
+                        "example": "95a22f4d-a9cd-3d97-bb95-37655f0f13f5"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Category Name"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "example": "category-name"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "File": {
+                "title": "File",
+                "description": "File model",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "uuid": {
+                        "type": "string",
+                        "example": "95a22f4d-a9cd-3d97-bb95-37655f0f13f5"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "File Name"
+                    },
+                    "path": {
+                        "type": "string",
+                        "example": "files/example.jpg"
+                    },
+                    "size": {
+                        "type": "string",
+                        "example": "100K"
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "image/jpeg"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "Order": {
+                "title": "Order",
+                "description": "Order model",
+                "properties": {
+                    "id": {
+                        "description": "Class Order",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "order_status_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "payment_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "uuid": {
+                        "type": "string",
+                        "example": "95a22f4d-a9cd-3d97-bb95-37655f0f13f5"
+                    },
+                    "products": {
+                        "properties": {
+                            "product": {
+                                "type": "string",
+                                "example": "95a22f4d-a9cd-3d97-bb95-37655f0f13f5"
+                            },
+                            "price": {
+                                "type": "string",
+                                "example": "9.99"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "address": {
+                        "properties": {
+                            "billing": {
+                                "type": "string",
+                                "example": "Billing Address"
+                            },
+                            "shipping": {
+                                "type": "string",
+                                "example": "Shipping Address"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "deliver_fee": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 99.99
+                    },
+                    "amount": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 99.99
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "shipped_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "OrderStatus": {
+                "title": "OrderStatus",
+                "description": "OrderStatus model",
+                "properties": {
+                    "id": {
+                        "description": "/**",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "uuir": {
+                        "type": "string",
+                        "example": "95a22f4d-a9cd-3d97-bb95-37655f0f13f5"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Pending"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "Payment": {
+                "title": "Payment",
+                "description": "Payment model",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "uuid": {
+                        "type": "string",
+                        "example": "95a22f4d-a9cd-3d97-bb95-37655f0f13f5"
+                    },
+                    "type": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 99.99
+                    },
+                    "details": {
+                        "properties": {
+                            "holder_name": {
+                                "type": "string",
+                                "example": "Testing"
+                            },
+                            "number": {
+                                "type": "number",
+                                "example": "7976767676766776"
+                            },
+                            "ccv": {
+                                "type": "number",
+                                "example": "787"
+                            },
+                            "expire_date": {
+                                "type": "number",
+                                "example": "09 25"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "Product": {
+                "title": "Product",
+                "description": "Product model",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "uuid": {
+                        "type": "string",
+                        "example": "95a22f4d-a9cd-3d97-bb95-37655f0f13f5"
+                    },
+                    "category_uuid": {
+                        "type": "string",
+                        "example": "95a22f4d-a9cd-3d97-bb95-37655f0f13f5"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Product Name"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Product Description"
+                    },
+                    "price": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 49.99
+                    },
+                    "products": {
+                        "properties": {
+                            "brand": {
+                                "type": "string",
+                                "example": "Brand Name"
+                            },
+                            "image": {
+                                "type": "string",
+                                "example": "Image"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "title": "User",
+                "description": "User model",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "uuid": {
+                        "type": "string",
+                        "example": "95a22f4d-a9cd-3d97-bb95-37655f0f13f5"
+                    },
+                    "first_name": {
+                        "type": "string",
+                        "example": "John"
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "example": "Doe"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "john.doe@example.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "password"
+                    },
+                    "is_admin": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "avatar": {
+                        "type": "string",
+                        "example": "files/profile.png"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "Kamal Town 12676, NY, USA"
+                    },
+                    "phone_number": {
+                        "type": "string",
+                        "example": "+4915731790256"
+                    },
+                    "is_marketing": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "last_login_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "email_verified_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}

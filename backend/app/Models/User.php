@@ -3,33 +3,35 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use OpenApi\Annotations as OA;
+
 
 /**
- * Class User
- *
- * @property string $uuid
- * @property string $first_name
- * @property string $last_name
- * @property string $email
- * @property string $password
- * @property boolean $is_admin
- * @property string $avatar
- * @property string $address
- * @property string $phone_number
- * @property boolean $is_marketing
- * @property Carbon $last_login_at
- * @property Carbon $email_verified_at
- * @property Carbon $created_at
- * @property Carbon $updated_at
- *
- * @property-read Order[] $orders
- *
- * @mixin User
+ * @OA\Schema(
+ *     schema="User",
+ *     type="object",
+ *     title="User",
+ *     description="User model",
+ *     @OA\Property(property="id", type="integer", example=1),
+ *     @OA\Property(property="uuid", type="string", example="95a22f4d-a9cd-3d97-bb95-37655f0f13f5"),
+ *     @OA\Property(property="first_name", type="string", example="John"),
+ *     @OA\Property(property="last_name", type="string", example="Doe"),
+ *     @OA\Property(property="email", type="string", example="john.doe@example.com"),
+ *     @OA\Property(property="password", type="string", example="password"),
+ *     @OA\Property(property="is_admin", type="boolean", example=false),
+ *     @OA\Property(property="avatar", type="string", example="files/profile.png"),
+ *     @OA\Property(property="address", type="string", example="Kamal Town 12676, NY, USA"),
+ *     @OA\Property(property="phone_number", type="string", example="+4915731790256"),
+ *     @OA\Property(property="is_marketing", type="boolean", example=false),
+ *     @OA\Property(property="created_at", type="string", format="date-time"),
+ *     @OA\Property(property="updated_at", type="string", format="date-time"),
+ *     @OA\Property(property="last_login_at", type="string", format="date-time"),
+ *     @OA\Property(property="email_verified_at", type="string", format="date-time")
+ * )
  */
 class User extends Authenticatable
 {
