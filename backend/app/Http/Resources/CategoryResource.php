@@ -2,16 +2,16 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Payment;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * Class PaymentResource
+ * Class CategoryResource
  *
- * @mixin Payment
+ * @mixin Category
  */
-class PaymentResource extends JsonResource
+class CategoryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -22,8 +22,10 @@ class PaymentResource extends JsonResource
     {
         return [
             'uuid' => $this->uuid,
-            'type' => $this->type,
-            'details' => $this->details,
+            'title' => $this->title,
+            'slug' => $this->slug,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }

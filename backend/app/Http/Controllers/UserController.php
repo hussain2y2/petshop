@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateRequest;
+use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -19,10 +19,10 @@ class UserController extends Controller
     }
 
     /**
-     * @param CreateRequest $request
+     * @param UserRequest $request
      * @return UserResource
      */
-    public function update(CreateRequest $request): UserResource
+    public function update(UserRequest $request): UserResource
     {
         $user = auth()->user();
         $request['password'] = bcrypt($request->password);
