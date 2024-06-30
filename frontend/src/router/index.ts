@@ -1,23 +1,27 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '@/pages/HomeView.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import Login from '@/pages/Login.vue';
+import Orders from '@/pages/Orders.vue';
+import Order from '@/pages/Order.vue';
+import { useAuthStore } from '@/store';
+
+const routes = [
+  { path: '/', name: 'login', component: Login },
+  { path: '/orders', name: 'orders', component: Orders },
+  { path: '/order/:id', name: 'order', component: Order },
+];
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('@/pages/AboutView.vue')
-    }
-  ]
-})
+  routes,
+});
 
-export default router
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore();
+  if (to.name !== 'login' && !authStore.token) {
+    next({ name: 'login' });
+  } else {
+    next();
+  }
+});
+
+export default router;
