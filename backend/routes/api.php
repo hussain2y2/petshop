@@ -12,6 +12,8 @@ Route::prefix('v1')->group(function () {
         // AUTH ROUTES
         Route::post('/login', [AuthController::class, 'login']);
         Route::post('/logout', [AuthController::class, 'logout']);
+        Route::post('/forgot-password', [AuthController::class, 'forgot']);
+        Route::post('/reset-password-token', [AuthController::class, 'reset']);
 
         // PROTECTED ROUTES
         Route::middleware('auth.jwt')->group(function () {
