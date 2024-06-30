@@ -16,10 +16,14 @@ use Illuminate\Notifications\Notifiable;
  * @property string $last_name
  * @property string $email
  * @property boolean $is_admin
+ * @property string $avatar
  * @property string $address
  * @property string $phone_number
  * @property boolean $is_marketing
  * @property Carbon $last_login_at
+ * @property Carbon $email_verified_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  * @mixin User
  */
 class User extends Authenticatable
@@ -43,6 +47,7 @@ class User extends Authenticatable
         'phone_number',
         'is_marketing',
         'last_login_at',
+        'email_verified_at',
     ];
 
     /**
