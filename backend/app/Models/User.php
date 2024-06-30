@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -24,6 +25,9 @@ use Illuminate\Notifications\Notifiable;
  * @property Carbon $email_verified_at
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ *
+ * @property-read Order[] $orders
+ * 
  * @mixin User
  */
 class User extends Authenticatable
@@ -74,5 +78,10 @@ class User extends Authenticatable
             'is_marketing' => 'boolean',
             'last_login_at' => 'datetime'
         ];
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
     }
 }
