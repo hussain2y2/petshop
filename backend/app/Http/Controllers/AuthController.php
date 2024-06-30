@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    public function register()
+    {
+
+    }
     public function login(LoginRequest $request): JsonResponse
     {
         $credentials = $request->only('email', 'password');
