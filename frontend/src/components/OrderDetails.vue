@@ -3,7 +3,6 @@
     <h2>Order Details</h2>
     <p><strong>Order ID:</strong> {{ order.uuid }}</p>
     <p><strong>Amount:</strong> {{ order?.amount }}</p>
-    <!-- Add more fields as needed -->
     <v-btn @click="downloadPdf">Download PDF</v-btn>
   </div>
 </template>

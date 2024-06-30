@@ -8,12 +8,3 @@
     </v-main>
   </v-app>
 </template>
-
-<script setup lang="ts">
-import { useAuthStore } from 'src/store';
-const authStore = useAuthStore();
-</script>
-
-<style scoped>
-@import '~vuetify/styles';
-</style>

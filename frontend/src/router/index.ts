@@ -1,13 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Login from '@/pages/Login.vue';
-import Orders from '@/pages/Orders.vue';
-import Order from '@/pages/Order.vue';
+import LoginPage from '@/pages/LoginPage.vue';
+import OrdersPage from '@/pages/OrdersPage.vue';
+import OrderPage from '@/pages/OrderPage.vue';
 import { useAuthStore } from '@/store';
 
 const routes = [
-  { path: '/', name: 'login', component: Login },
-  { path: '/orders', name: 'orders', component: Orders },
-  { path: '/order/:id', name: 'order', component: Order },
+  { path: '/', name: 'login', component: LoginPage },
+  { path: '/orders', name: 'orders', component: OrdersPage },
+  { path: '/order/:id', name: 'order', component: OrderPage },
 ];
 
 const router = createRouter({
