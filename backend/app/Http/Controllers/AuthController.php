@@ -97,9 +97,7 @@ class AuthController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
 
-        DB::table('password_resets')->where([
-            ['email', $request->email]
-        ])->delete();
+        DB::table('password_resets')->where(['email' => $request->email])->delete();
 
         return response()->json(['message' => 'Your password has been reset!']);
     }
