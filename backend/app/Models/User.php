@@ -16,6 +16,7 @@ use Illuminate\Notifications\Notifiable;
  * @property string $first_name
  * @property string $last_name
  * @property string $email
+ * @property string $password
  * @property boolean $is_admin
  * @property string $avatar
  * @property string $address

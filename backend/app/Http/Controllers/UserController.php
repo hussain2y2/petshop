@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -9,17 +10,25 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    /**
+     * @return UserResource
+     */
     public function me(): UserResource
     {
         return new UserResource(auth()->user());
     }
 
-    public function update(Request $request, $uuid): JsonResponse
+    /**
+     * @param CreateRequest $request
+     * @return UserResource
+     */
+    public function update(CreateRequest $request): UserResource
     {
-        $user = User::where('uuid', $uuid)->firstOrFail();
+        $user = auth()->user();
+        $request['password'] = bcrypt($request->password);
         $user->update($request->all());
 
-        return response()->json($user);
+        return new UserResource($user);
     }
 
     public function destroy($uuid): JsonResponse

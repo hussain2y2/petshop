@@ -2,9 +2,19 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Payment
+ *
+ * @property string $uuid
+ * @property string $type
+ * @property array $details
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ */
 class Payment extends Model
 {
     use HasFactory;
@@ -18,7 +28,7 @@ class Payment extends Model
     // Accessor for the details field
     public function getDetailsAttribute($value): object
     {
-        return json_decode($value, true);
+        return (object) json_decode($value, true);
     }
 
     // Mutator for the details field
