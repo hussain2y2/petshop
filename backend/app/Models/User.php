@@ -27,7 +27,7 @@ use Illuminate\Notifications\Notifiable;
  * @property Carbon $updated_at
  *
  * @property-read Order[] $orders
- * 
+ *
  * @mixin User
  */
 class User extends Authenticatable

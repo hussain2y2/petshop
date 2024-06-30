@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Order;
+use App\Models\OrderStatus;
+use App\Models\Payment;
 use App\Models\Product;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -28,12 +31,17 @@ class DatabaseSeeder extends Seeder
             'phone_number' => fake()->phoneNumber(),
         ]);
 
-         User::factory(10)->create();
-         Brand::factory(11)->create();
+        OrderStatus::factory(11)->create();
+        Payment::factory(11)->create();
+        Brand::factory(11)->create();
         // Create 11 categories each with 11 products
-         Category::factory()
+        Category::factory()
             ->count(11)
             ->has(Product::factory()->count(11), 'products')
+            ->create();
+        User::factory()
+            ->count(10)
+            ->has(Order::factory()->count(11), 'orders')
             ->create();
     }
 }

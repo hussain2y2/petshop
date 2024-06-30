@@ -22,6 +22,30 @@ class Order extends Model
         'shipped_at'
     ];
 
+    // Accessor for the products field
+    public function getProductsAttribute($value): object
+    {
+        return json_decode($value, true);
+    }
+
+    // Mutator for the products field
+    public function setProductsAttribute($value): void
+    {
+        $this->attributes['products'] = json_encode($value);
+    }
+
+    // Accessor for the address field
+    public function getAddressAttribute($value): object
+    {
+        return json_decode($value, true);
+    }
+
+    // Mutator for the address field
+    public function setAddressAttribute($value): void
+    {
+        $this->attributes['address'] = json_encode($value);
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

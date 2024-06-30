@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('order_status_id')->constrained('order_status');
+            $table->foreignId('order_status_id')->constrained('order_statuses');
             $table->foreignId('payment_id')->constrained('payments');
             $table->uuid()->unique();
             $table->json('products')->comment('Array of {"product":"uuid","quantity":"int"}');

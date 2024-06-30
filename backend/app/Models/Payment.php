@@ -15,6 +15,18 @@ class Payment extends Model
         'details'
     ];
 
+    // Accessor for the details field
+    public function getDetailsAttribute($value): object
+    {
+        return json_decode($value, true);
+    }
+
+    // Mutator for the details field
+    public function setDetailsAttribute($value): void
+    {
+        $this->attributes['details'] = json_encode($value);
+    }
+
     public function order(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Order::class);
