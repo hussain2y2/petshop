@@ -1,11 +1,29 @@
-# frontend
+# Pet Shop Frontend
 
-This template should help get you started developing with Vue 3 in Vite.
+This project is a frontend application for the Pet Shop API.
 
-## Recommended IDE Setup
+## Requirements
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Node.js 20.14.0
+- npm
 
+## Setup
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Run the application: `npm run dev`
+
+## Features
+
+- User Login/Logout
+- Order Listing
+- Order Details
+- PDF Download
+
+## Notes
+
+- Ensure the Pet Shop API is running and accessible.
+- The application should run out-of-the-box.
 ## Type Support for `.vue` Imports in TS
 
 TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
