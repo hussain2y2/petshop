@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthStore } from '@/stores';
+import { useAuthStore } from 'src/store';
 const authStore = useAuthStore();
 </script>
 
