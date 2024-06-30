@@ -15,16 +15,13 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 /**
- * @OA\Info(
- *     title="API Documentation",
- *     version="1.0.0"
- * )
+ * @OA\PathItem(path="/api/v1/user")
  */
 class AuthController extends Controller
 {
     /**
      * @OA\Post(
-     *     path="/api/v1/user/login",
+     *     path="/login",
      *     tags={"Auth"},
      *     summary="Login",
      *     description="Authenticate user",
@@ -65,7 +62,7 @@ class AuthController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/v1/user/logout",
+     *     path="/logout",
      *     tags={"Auth"},
      *     summary="Logout",
      *     description="Logout the authenticated user",
@@ -83,8 +80,35 @@ class AuthController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return JsonResponse
+     * @OA\Post(
+     *     path="/forgot-password",
+     *     tags={"Auth"},
+     *     summary="Forgot Password",
+     *     description="Request password reset link",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="email", type="string", example="user@example.com")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Password reset link sent",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="message", type="string", example="We have emailed your password reset link!")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="User not found",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="message", type="string", example="User not found")
+     *         )
+     *     )
+     * )
      */
     public function forgot(Request $request): JsonResponse
     {
@@ -113,8 +137,46 @@ class AuthController extends Controller
     }
 
     /**
-     * @param PasswordResetRequest $request
-     * @return JsonResponse
+     * @OA\Post(
+     *     path="/reset-password-token",
+     *     tags={"Auth"},
+     *     summary="Reset Password",
+     *     description="Reset password using token",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="email", type="string", example="user@example.com"),
+     *             @OA\Property(property="token", type="string", example="reset_token"),
+     *             @OA\Property(property="password", type="string", example="new_password"),
+     *             @OA\Property(property="password_confirmation", type="string", example="new_password")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Password has been reset",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="message", type="string", example="Your password has been reset!")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid token",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="message", type="string", example="This password reset token is invalid.")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="User not found",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="message", type="string", example="User not found")
+     *         )
+     *     )
+     * )
      */
     public function reset(PasswordResetRequest $request): JsonResponse
     {
